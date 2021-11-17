@@ -49,7 +49,8 @@ public class newCompanyPage {
     }
 
     public void addCompany(String[] data){
-        companyName.sendKeys(data[1]);
+        if(!data[1].isBlank())
+            companyName.sendKeys(data[1]);
         industry.sendKeys(data[2]);
         annualrevenue.sendKeys(data[3]);
         numofemp.sendKeys(data[4]);
@@ -58,8 +59,12 @@ public class newCompanyPage {
         address.sendKeys(data[9]);
         country.sendKeys(data[10]);
         zipcode.sendKeys(data[11]);
-        Select s= new Select(status);s.selectByIndex(Integer.parseInt(data[5]));
-        s= new Select(cat);s.selectByIndex(Integer.parseInt(data[6]));
+        Select s= new Select(status);
+        try{ s.selectByIndex(Integer.parseInt(data[5])); }
+        catch (Exception e){s.selectByIndex(0);}
+        s= new Select(cat);
+        try{s.selectByIndex(Integer.parseInt(data[6]));}
+        catch (Exception e){s.selectByIndex(0);}
         save.click();
     }
     public Boolean isAddedCompanyDisplayed(String name){

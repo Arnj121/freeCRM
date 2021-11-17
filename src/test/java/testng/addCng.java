@@ -41,13 +41,19 @@ public class addCng {
         Assert.assertTrue(ncp.isCompanyPageVisible());
         String[] d = Arrays.copyOf(data,data.length,String[].class);
         ncp.addCompany(d);
-        try {
-            Assert.assertTrue(ncp.isAddedCompanyDisplayed(d[1]));
-            Excel.writeData("src/test/java/resources/companies.xlsx","Valid",Integer.parseInt(data[0].toString()),11);
-        }
-        catch (Exception e){
+        boolean error=false;
+        try{
+            driver.switchTo().alert().accept();
             Excel.writeData("src/test/java/resources/companies.xlsx","Invalid",Integer.parseInt(data[0].toString()),11);
-            throw new AssertionError();
+        }
+        catch (Exception e) {
+            try {
+                Assert.assertTrue(ncp.isAddedCompanyDisplayed(d[1]));
+                Excel.writeData("src/test/java/resources/companies.xlsx", "Valid", Integer.parseInt(data[0].toString()), 11);
+            } catch (Exception e1) {
+                Excel.writeData("src/test/java/resources/companies.xlsx", "Invalid", Integer.parseInt(data[0].toString()), 11);
+                throw new AssertionError();
+            }
         }
 
     }
@@ -57,7 +63,7 @@ public class addCng {
         lg.clickLogout();
     }
     @BeforeClass
-    public void _(){
+    public void ____(){
         System.setProperty("webdriver.chrome.driver","G:\\chromedriver.exe");
         WebDriverManager.chromedriver().setup();
         driver= new ChromeDriver();

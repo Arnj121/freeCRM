@@ -13,7 +13,7 @@ public class combineForm {
 
     public WebDriver driver;
 
-    @FindBy(xpath = "/html/body/table[2]/tbody/tr[1]/td[2]/table/tbody/tr/td/fieldset/legend")
+    @FindBy(xpath = "//*[@id=\"combinedForm\"]/fieldset/legend")
     WebElement combineVerify;
     @FindBy(xpath="//*[@id=\"company_name\"]")
     WebElement companyName;
@@ -60,11 +60,12 @@ public class combineForm {
     }
 
     public Boolean isCombinePageVisible(){
-        return this.combineVerify.getText().equals("Combined Contact and Company Form");
+        return combineVerify.getText().contains("Combined Contact and Company Form");
     }
 
     public void addCompany(String[] data){
-        companyName.sendKeys(data[1]);
+        if(!data[1].isBlank())
+            companyName.sendKeys(data[1]);
         industry.sendKeys(data[2]);
         annualrevenue.sendKeys(data[3]);
         numofemp.sendKeys(data[4]);
@@ -73,20 +74,34 @@ public class combineForm {
         address.sendKeys(data[9]);
         country.sendKeys(data[10]);
         zipcode.sendKeys(data[11]);
-        Select s= new Select(status);s.selectByIndex(Integer.parseInt(data[5]));
-        s= new Select(cat);s.selectByIndex(Integer.parseInt(data[6]));
-        s = new Select(ucat);s.selectByIndex(Integer.parseInt(data[15]));
-        s = new Select(ustatus);s.selectByIndex(Integer.parseInt(data[16]));
+        Select s= new Select(status);
+        try{s.selectByIndex(Integer.parseInt(data[5]));}
+        catch (Exception e){s.selectByIndex(0);}
+        s= new Select(cat);
+        try{ s.selectByIndex(Integer.parseInt(data[6]));}
+        catch (Exception e){s.selectByIndex(0);}
+        s = new Select(ucat);
+        try{s.selectByIndex(Integer.parseInt(data[15]));}
+        catch (Exception e){s.selectByIndex(0);}
+        s = new Select(ustatus);
+        try{s.selectByIndex(Integer.parseInt(data[16]));}
+        catch (Exception e){s.selectByIndex(0);}
         title.sendKeys(data[12]);
         fname.sendKeys(data[13]);
         lname.sendKeys(data[14]);
         con_phone.sendKeys(data[17]);
         con_email.sendKeys(data[18]);
-        if(Integer.parseInt(data[19])==1) driver.findElement(By.xpath("//*[@id=\"combinedForm\"]/fieldset/table/tbody/tr[3]/td[2]/table/tbody/tr[21]/td[2]/input[1]")).click();
-        else driver.findElement(By.xpath("//*[@id=\"combinedForm\"]/fieldset/table/tbody/tr[3]/td[2]/table/tbody/tr[21]/td[2]/input[2]")).click();
-        if(Integer.parseInt(data[20])==1) driver.findElement(By.xpath("//*[@id=\"combinedForm\"]/fieldset/table/tbody/tr[3]/td[2]/table/tbody/tr[22]/td[2]/input[1]")).click();
-        else driver.findElement(By.xpath("//*[@id=\"combinedForm\"]/fieldset/table/tbody/tr[3]/td[2]/table/tbody/tr[22]/td[2]/input[2]")).click();
-
+        try {
+            if (Integer.parseInt(data[19]) == 1)
+                driver.findElement(By.xpath("//*[@id=\"combinedForm\"]/fieldset/table/tbody/tr[3]/td[2]/table/tbody/tr[21]/td[2]/input[1]")).click();
+            else
+                driver.findElement(By.xpath("//*[@id=\"combinedForm\"]/fieldset/table/tbody/tr[3]/td[2]/table/tbody/tr[21]/td[2]/input[2]")).click();
+            if (Integer.parseInt(data[20]) == 1)
+                driver.findElement(By.xpath("//*[@id=\"combinedForm\"]/fieldset/table/tbody/tr[3]/td[2]/table/tbody/tr[22]/td[2]/input[1]")).click();
+            else
+                driver.findElement(By.xpath("//*[@id=\"combinedForm\"]/fieldset/table/tbody/tr[3]/td[2]/table/tbody/tr[22]/td[2]/input[2]")).click();
+        }
+        catch (Exception e){}
         save.click();
     }
     public Boolean isAddedCompanyDisplayed(String cname,String fname,String lname){

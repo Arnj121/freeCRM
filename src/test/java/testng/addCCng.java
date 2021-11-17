@@ -41,13 +41,19 @@ public class addCCng {
         Assert.assertTrue(cf.isCombinePageVisible());
         String[] d = Arrays.copyOf(data,data.length,String[].class);
         cf.addCompany(d);
-        try {
-            Assert.assertTrue(cf.isAddedCompanyDisplayed(d[1],d[13],d[14]));
-            Excel.writeData("src/test/java/resources/companiesClient.xlsx","Valid",Integer.parseInt(data[0].toString()),21);
+        try{
+            driver.switchTo().alert().accept();
+            Excel.writeData("src/test/java/resources/companiesClient.xlsx","Invalid",Integer.parseInt(data[0].toString()),21);
         }
         catch (Exception e){
-            Excel.writeData("src/test/java/resources/companiesClient.xlsx","Invalid",Integer.parseInt(data[0].toString()),21);
-            throw new AssertionError();
+            try {
+                Assert.assertTrue(cf.isAddedCompanyDisplayed(d[1],d[13],d[14]));
+                Excel.writeData("src/test/java/resources/companiesClient.xlsx","Valid",Integer.parseInt(data[0].toString()),21);
+            }
+            catch (Exception e1){
+                Excel.writeData("src/test/java/resources/companiesClient.xlsx","Invalid",Integer.parseInt(data[0].toString()),21);
+                throw new AssertionError();
+            }
         }
     }
     @Test(priority = 4)
@@ -56,7 +62,7 @@ public class addCCng {
         lg.clickLogout();
     }
     @BeforeClass
-    public void _(){
+    public void ____(){
         System.setProperty("webdriver.chrome.driver","G:\\chromedriver.exe");
         WebDriverManager.chromedriver().setup();
         driver= new ChromeDriver();

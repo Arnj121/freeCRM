@@ -29,7 +29,6 @@ Feature: verify the companies functionality
     When user enters all the information and clicks save
     Then user is displayed the details of the company
 
-  @sampletest
   Scenario: add company with invalid credentials
     Given user is displayed the home page
     When user clicks on new company
@@ -58,11 +57,12 @@ Feature: verify the companies functionality
     When user enters invalid c&c information and clicks save
     Then user is displayed an error message
 
+  @sampletest
   Scenario: add company along with client with blank credentials
     Given user is displayed the home page
     When user clicks on combine form
     Then user is displayed the combine form
-    When user leaves all the fields blank and clicks save
+    When user leaves all the c&c fields blank and clicks save
     Then user is displayed an error message
 
   @homeTest

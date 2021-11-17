@@ -163,7 +163,14 @@ public class glue {
 
     @When("^user leaves all the fields blank and clicks save$")
     public void userLeavesAllTheFieldsBlankAndClicksSave() {
-        //TODO
+        String[] data = new String[]{"1","","","","","","","","","","",""};
+        ncp.addCompany(data);
+    }
+
+    @When("^user leaves all the c&c fields blank and clicks save$")
+    public void userLeavesAllTheccFieldsBlankAndClicksSave() {
+        String[] data = new String[]{"","","","","","","","","","","","","","","","","","","","",""};
+        cf.addCompany(data);
     }
 
     @When("^user enters all the information c&c and clicks save$")
@@ -174,8 +181,6 @@ public class glue {
 
     @When("^user enters invalid c&c information and clicks save$")
     public void userEntersInvalidInformationClicksSave() {
-        //TODO
-
     }
 
     @Then("^user is displayed the details of the company$")
