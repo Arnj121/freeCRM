@@ -64,7 +64,7 @@ public class combineForm {
     }
 
     public void addCompany(String[] data){
-        if(!data[1].isBlank())
+        if(data[1].trim().length()>0)
             companyName.sendKeys(data[1]);
         industry.sendKeys(data[2]);
         annualrevenue.sendKeys(data[3]);
