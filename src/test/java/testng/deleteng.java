@@ -1,6 +1,7 @@
 package testng;
 
 
+import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,11 +11,9 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import pageFactory.*;
 import util.Excel;
-
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
-public class deleteng {
+public class deleteng  {
 
     WebDriver driver;
     JavascriptExecutor js;

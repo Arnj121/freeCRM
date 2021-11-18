@@ -4,4 +4,4 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(features ="src/test/java/features",glue={"glueCode"},tags = {"@searchDis,@searchDisFul,@searchVer"})
-public class searchRunner { }
+public class searchRunner {}

@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import org.testng.annotations.Test;
 import pageFactory.*;
 import util.*;
 

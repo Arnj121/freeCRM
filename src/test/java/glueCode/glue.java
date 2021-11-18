@@ -222,8 +222,6 @@ public class glue {
 
     @Then("^user is displayed the filtered results$")
     public void userIsDisplayedTheFilteredResults() {
-        Assert.assertTrue(cp.verifyFilter("b"));
-//        try{Assert.assertTrue(cp.verifyFilter("b"));}
-//        catch (Exception e){System.out.println("Filter results invalid");}
+        Assert.assertTrue(cp.verifyFilter("a"));
     }
 }
