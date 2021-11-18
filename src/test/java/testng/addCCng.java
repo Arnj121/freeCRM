@@ -44,15 +44,15 @@ public class addCCng {
         cf.addCompany(d);
         try{
             driver.switchTo().alert().accept();
-            Excel.writeData("src/test/java/resources/companiesClient.xlsx","Invalid",Integer.parseInt(data[0].toString()),21);
+            Excel.writeData("src/test/java/resources/companiesClient.xlsx","Valid",Integer.parseInt(data[0].toString()),21);
         }
         catch (Exception e){
             try {
                 Assert.assertTrue(cf.isAddedCompanyDisplayed(d[1],d[13],d[14]));
-                Excel.writeData("src/test/java/resources/companiesClient.xlsx","Valid",Integer.parseInt(data[0].toString()),21);
+                Excel.writeData("src/test/java/resources/companiesClient.xlsx","Valid",Integer.parseInt(data[0].toString()),20);
             }
             catch (Exception e1){
-                Excel.writeData("src/test/java/resources/companiesClient.xlsx","Invalid",Integer.parseInt(data[0].toString()),21);
+                Excel.writeData("src/test/java/resources/companiesClient.xlsx","Invalid",Integer.parseInt(data[0].toString()),20);
                 throw new AssertionError();
             }
         }

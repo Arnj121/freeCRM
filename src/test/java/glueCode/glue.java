@@ -152,8 +152,8 @@ public class glue {
 
     @When("^user enters all the information and clicks save$")
     public void userEntersAllTheInformationAndClicksSave() throws IOException {
-        String[][] data = Excel.readData("src/test/resources/companies.xlsx");
-        cname = data[0][0];ncp.addCompany(data[0]);
+        String[][] data = Excel.readData("src/test/java/resources/companies.xlsx");
+        cname = data[0][1];ncp.addCompany(data[0]);
     }
 
 
@@ -175,8 +175,8 @@ public class glue {
 
     @When("^user enters all the information c&c and clicks save$")
     public void entersAllTheInformationAndClicksSave() throws IOException {
-        String[][] data = Excel.readData("src/test/resources/companiesClient.xlsx");
-        cname = data[0][0];fname=data[0][12];lname=data[0][13];cf.addCompany(data[0]);
+        String[][] data = Excel.readData("src/test/java/resources/companiesClient.xlsx");
+        cname = data[0][1];fname=data[0][13];lname=data[0][14];cf.addCompany(data[0]);
     }
 
     @When("^user enters invalid c&c information and clicks save$")
