@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <packaging>maven-plugin</packaging>
     <groupId>com.test</groupId>
     <artifactId>test</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -30,8 +30,8 @@
                         </goals>
                         <configuration>
                             <projectName>test</projectName>
-                            <outputDirectory>cucumber/advanced-reports</outputDirectory>
-                            <cucumberOutputs>cucumber/CucumberTestReport.json</cucumberOutputs>
+                            <outputDirectory>target/cucumber/advanced-reports</outputDirectory>
+                            <cucumberOutput>target/cucumber/CucumberTestReport.json</cucumberOutput>
                             <buildNumber>1</buildNumber>
                             <parallelTesting>false</parallelTesting>
                         </configuration>
